@@ -1,0 +1,187 @@
+.profile-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .profile-modal-content {
+    background: #000;
+    padding: 20px;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    width: 650px; /* 모달 크기 조정 */
+    max-height: 80%;
+    overflow-y: auto; /* 스크롤 추가 */
+    color: #fff;
+    text-align: center;
+    position: relative;
+    overflow-y: scroll; /* 수직 스크롤 활성화 */
+    scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+    -ms-overflow-style: none; /* IE/Edge에서 스크롤바 숨기기 */
+  }
+  
+  .profile-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #fff;
+  }
+  
+  .profile-modal-edit {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border: none;
+    background: none;
+    font-size: 14px;
+    cursor: pointer;
+    color: #007bff;
+  }
+  
+  .profile-modal-header {
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: #fff;
+    font-weight: bold;
+    border-bottom: 1px solid white;
+    padding-bottom: 10px;
+  }
+  
+  .profile-basic-info {
+    margin-bottom: 15px;
+    text-align: left;
+    border-bottom: 1px solid white;
+    font-size: 23px;
+  }
+  
+  .profile-info-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding:5px;
+  }
+  
+  .profile-posts-title {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .profile-posts-list {
+    text-align: left;
+    max-height: 150px;
+    overflow-y: auto;
+  }
+  
+  .profile-post-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid #555;
+  }
+  
+  .profile-post-menu {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .ppost-item { /*게시글 박스들 */
+    border-style:double;
+    border-color:#fff;
+    background-color: #000;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding-bottom: 20px;
+    position: relative; /* 삭제 버튼 위치 설정을 위해 추가 */
+    margin-bottom:20px;
+  }
+  
+  .post-menu-dropdown {
+    position: absolute;
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 5px;
+    border-radius: 4px;
+    top: 20px;
+    right: 10px;
+    z-index: 100;
+  }
+  
+  .post-menu-dropdown button {
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .post-delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #ff4d4d;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .post-delete-btn:hover {
+    color: #ff0000;
+  }
+
+  .pcustom-id {
+    font-size: 16px;
+    color: #888;
+    margin-bottom: 10px;
+    display: block;
+    margin-left: 10px;
+  }
+  
+  .ppost-title {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 30px;
+  }
+
+  .ppost-content {
+    margin-bottom: 30px;
+    font-size: 18px;
+  }
+
+  .ppost-actions{
+    border-top: 1px solid #fff;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .pview-count {
+    background: none;
+    border: none;
+    font-size: 14px;
+    padding-top: 10px;
+    color: #007bff;
+  }
+  .profile-modal-edit{
+    font-size: 18px;
+    font-weight: bold;
+  }

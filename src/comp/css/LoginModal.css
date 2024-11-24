@@ -45,9 +45,9 @@
     color: #fff;
   }
   
-  .form-submit-btn,
+  .form-submit-btn1,
   .google-login-btn {
-    width: 70%;
+    width: 300px;
     padding: 10px;
     background-color: #1d9bf0;
     border: none;
@@ -62,4 +62,10 @@
     background-color: #ffffff;
     color: #000;
     font-weight: bold;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
   }
