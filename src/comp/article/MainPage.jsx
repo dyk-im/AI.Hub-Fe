@@ -62,14 +62,19 @@ function MainPage() {
   const loadPosts = async (page) => {
     if (loading) return; // 이미 로딩 중이면 중복 요청 방지
     setLoading(true);
-
+  
     try {
       const response = await axios.get("/article", {
         params: { page, size: 10 }, // 페이지네이션 요청
       });
       const newPosts = response.data.result;
-
-      setPosts((prevPosts) => [...prevPosts, ...newPosts]); // 기존 게시물에 추가
+  
+      setPosts((prevPosts) => {
+        const existingIds = new Set(prevPosts.map((post) => post.articleId));
+        const filteredPosts = newPosts.filter((post) => !existingIds.has(post.articleId)); // 중복 제거
+        return [...prevPosts, ...filteredPosts];
+      });
+  
       if (newPosts.length < 10) {
         setHasMore(false); // 더 이상 데이터 없음
       }
@@ -79,6 +84,7 @@ function MainPage() {
       setLoading(false);
     }
   };
+  
 
   // 첫 로딩 시 게시글 가져오기
   useEffect(() => {
@@ -107,6 +113,17 @@ function MainPage() {
     setSelectedPost(null);
     setIsPostDetailOpen(false);
   };
+  const resetState = async () => {
+    try {
+      setPosts([]);
+      setCurrentPage(1);
+      setHasMore(true);
+      await loadPosts(1); // 첫 페이지 데이터 로드
+    } catch (error) {
+      console.error("초기화 중 오류 발생:", error);
+    }
+  };
+  
 
   return (
     <div className="main-layout">
@@ -117,7 +134,7 @@ function MainPage() {
           <div className="logo-hub-side">Hub</div>
         </div>
         <nav className="menu">
-          <button className="menu-item" onClick={() => window.location.reload()}>
+          <button className="menu-item" onClick={resetState}>
             HOME
           </button>
           <button className="menu-item" onClick={toggleProfileModal}>
@@ -144,30 +161,32 @@ function MainPage() {
 
         {/* 게시글 리스트 */}
         <section className="posts-container">
-          {posts.map((post) => (
-            <div
-              key={post.articleId}
-              className="post-item"
-              onClick={() => openPostDetailModal(post)}
-            >
-              <span className="custom-id">{post.username}</span>
-              <div className="con">
-                <h3 className="post-title">{post.title}</h3>
-                <p className="post-content">{post.content}</p>
-              </div>
-              <div className="post-actions">
-                <span className="view-count">Like {post.likeCnt}</span>
-                <span className="view-count">Reply {post.commentCnt}</span>
-                <span className="view-count">View {post.viewCnt}</span>
-              </div>
-            </div>
-          ))}
-          {hasMore && (
-            <button className="plus" onClick={handleLoadMore} disabled={loading}>
-              {loading ? "Loading..." : "더 보기"}
-            </button>
-          )}
-        </section>
+  {posts.map((post) => (
+    <div key={post.articleId} className="post-item">
+      <span className="custom-id">{post.username}</span>
+      <div className="con">
+        <h3 className="post-title">{post.title}</h3>
+        <p className="post-content">{post.content}</p>
+      </div>
+      <div className="post-actions">
+        <span className="view-count">Like {post.likeCnt}</span>
+        {/* Reply 버튼 추가 */}
+        <button
+          className="view-count"
+          onClick={() => openPostDetailModal(post)} // 클릭 시 모달 열기
+        >
+          Reply {post.commentCnt}
+        </button>
+        <span className="view-count">View {post.viewCnt}</span>
+      </div>
+    </div>
+  ))}
+  {hasMore && (
+    <button className="plus" onClick={handleLoadMore} disabled={loading}>
+      {loading ? "Loading..." : "더 보기"}
+    </button>
+  )}
+</section>
       </main>
 
       {/* 오른쪽 위젯 */}

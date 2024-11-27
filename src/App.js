@@ -52,10 +52,7 @@ function AppRouter() {
               <div className="logo-hub">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hub</div>
             </div>
             <div className="right-containers">
-              <h2 className="description-text">소중한 AI 경험을 공유하세요</h2>
-              <br />
-              <br />
-              <br />
+              <h2 className="description-text">소중한 AI 경험을 공유하세요</h2><br /><br /><br />
               <div className="button-section">
                 <button className="login-btn" onClick={() => setShowLogin(true)}>
                   <b>로그인</b>
