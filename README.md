@@ -1,3 +1,3 @@
-#GCU Project : AI.Hub Front-end
+# GCU Project : AI.Hub Front-end
 
-#Stack : React.js
+# Stack : React.js
